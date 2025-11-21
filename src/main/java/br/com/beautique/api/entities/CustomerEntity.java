@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
@@ -13,20 +12,17 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "beauty_procedures")
-public class BeautyProceduresEntity extends BaseEntity{
+@Table(name = "customer")
+public class CustomerEntity extends BaseEntity{
 
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(length = 500)
-    private String description;
-
-    @Column(nullable = false)
-    private BigDecimal price;
+    @Column(nullable = false, length = 100)
+    private String phone;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "beautyProcedure", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<AppointmentsEntity> appointments;
